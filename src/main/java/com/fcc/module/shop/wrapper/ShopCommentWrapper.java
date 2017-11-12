@@ -2,6 +2,7 @@ package com.fcc.module.shop.wrapper;
 
 import com.fcc.common.BaseControllerWrapper;
 import com.fcc.core.support.DateTimeKit;
+import com.fcc.core.util.SpringContextHolder;
 import com.fcc.module.auth.dao.AuthUserRepository;
 import com.fcc.module.auth.model.AuthUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.Map;
 public class ShopCommentWrapper extends BaseControllerWrapper {
 
     @Autowired
-    AuthUserRepository authUserRepository;
+    AuthUserRepository authUserRepository = SpringContextHolder.getBean(AuthUserRepository.class);
 
     public ShopCommentWrapper(Object obj) {
         super(obj);

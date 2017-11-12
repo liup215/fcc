@@ -74,6 +74,11 @@ public class ShopServiceImpl implements IShopService{
     @Override
     public List<ShopCommentEntity> getComment(Integer shopId) {
         List<ShopCommentEntity> comments = shopCommentRepository.findByShopId(shopId);
-        return (List)(new ShopCommentWrapper(comments)).warp();
+        List<Map<String,Object>> list = new ArrayList<>();
+        for(ShopCommentEntity comment:comments){
+            Map<String,Object> map = BeanKit.beanToMap(comment);
+            list.add(map);
+        }
+        return (List)(new ShopCommentWrapper(list)).warp();
     }
 }

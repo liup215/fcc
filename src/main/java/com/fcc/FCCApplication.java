@@ -21,6 +21,6 @@ public class FCCApplication {
         JSON.DEFAULT_TYPE_KEY = "type";
 
         SpringApplication.run(FCCApplication.class,args);
-        logger.info("LawApplication Start success!!!");
+        logger.info("FCCApplication Start success!!!");
     }
 }
