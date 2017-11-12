@@ -30,8 +30,8 @@ public class ShopController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Tip shopList(){
-        List<ShopContentEntity> list = shopService.getShop();
+    public Tip shopList(@RequestParam Integer page,@RequestParam Integer pageSize){
+        List<ShopContentEntity> list = shopService.getShop(page,pageSize);
         return new SuccessTip(list);
     }
 

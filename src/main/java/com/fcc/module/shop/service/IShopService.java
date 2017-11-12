@@ -17,4 +17,6 @@ public interface IShopService {
     public ShopContentEntity getShopById(Integer shopId);
 
     public List<ShopCommentEntity> getComment(Integer shopId);
+
+    public List<ShopContentEntity> getShop(Integer page, Integer pageSize);
 }

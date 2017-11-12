@@ -38,11 +38,16 @@ public class ShopServiceImpl implements IShopService{
 
     @Override
     public List getShop() {
+        return getShop(0,30);
+    }
+
+    @Override
+    public List<ShopContentEntity> getShop(Integer page, Integer pageSize) {
         List<Map<String,Object>> shopList = new ArrayList<>();
         Sort sort = new Sort(Sort.Direction.fromStringOrNull(Sort.Direction.DESC.name()),"id");
-        Pageable page = new PageRequest(0,30,sort);
+        Pageable pageAble = new PageRequest(page,pageSize,sort);
 
-        List<ShopContentEntity> shops = shopContentRepository.findAll(page).getContent();
+        List<ShopContentEntity> shops = shopContentRepository.findAll(pageAble).getContent();
 
         for(ShopContentEntity shop:shops){
             Map<String,Object> shopi = new HashMap<>();
