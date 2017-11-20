@@ -1,6 +1,7 @@
 package com.fcc.module.shop.wrapper;
 
 import com.fcc.common.BaseControllerWrapper;
+import com.fcc.core.support.DateTimeKit;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -22,9 +23,8 @@ public class ShopContentWrapper extends BaseControllerWrapper {
         Timestamp createDate = (Timestamp) map.get("createDate");
         Timestamp editDate = (Timestamp) map.get("editDate");
 
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String formatCreateDate = formatter.format(new Date(createDate.getTime()));
-        String formatEditDate = formatter.format(new Date(editDate.getTime()));
+        String formatCreateDate = DateTimeKit.formatDate(new Date(createDate.getTime()));
+        String formatEditDate = DateTimeKit.formatDate(new Date(editDate.getTime()));
 
         map.put("createDate",formatCreateDate);
         map.put("editDate",formatEditDate);
