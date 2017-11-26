@@ -31,4 +31,11 @@ public class TokenModel {
         this.token = token;
     }
 
+    @Override
+    public String toString() {
+        return "TokenModel{" +
+                "userId=" + userId +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }

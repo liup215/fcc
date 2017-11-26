@@ -1,7 +1,7 @@
 package com.fcc.core.util;
 
 
-import com.fcc.config.properties.LawProperties;
+import com.fcc.config.properties.FccProperties;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -60,7 +60,7 @@ public class ToolUtil {
     }
 
     public static Boolean getKaptchaOnOff(){
-        return SpringContextHolder.getBean(LawProperties.class).getKaptchaOpen();
+        return SpringContextHolder.getBean(FccProperties.class).getKaptchaOpen();
     }
 
     public static String getExceptionMsg(Exception e) {

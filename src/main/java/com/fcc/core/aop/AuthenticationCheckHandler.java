@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthenticationCheckHandler {
 
     @Autowired
-    TokenManager tokenManager;
+    TokenManager defaultTokenManager;
 
     @Pointcut(value = "@annotation(com.fcc.common.annotion.AuthenticationCheck)")
     public void cutAuth(){
@@ -40,8 +40,8 @@ public class AuthenticationCheckHandler {
 
         String authorization  = request.getHeader(AuthConstants.AUTHORIZATION);
 
-        TokenModel model = tokenManager.getToken(authorization);
-        if(tokenManager.checkToken(model)){
+        TokenModel model = defaultTokenManager.getToken(authorization);
+        if(defaultTokenManager.checkToken(model)){
             return point.proceed();
         }
 

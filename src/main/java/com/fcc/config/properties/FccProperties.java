@@ -13,8 +13,8 @@ import static com.fcc.core.util.ToolUtil.isEmpty;
  */
 
 @Component
-@ConfigurationProperties(prefix = LawProperties.PREFIX)
-public class LawProperties {
+@ConfigurationProperties(prefix = FccProperties.PREFIX)
+public class FccProperties {
     public static final String PREFIX="law";
     private Boolean kaptchaOpen = false;
 

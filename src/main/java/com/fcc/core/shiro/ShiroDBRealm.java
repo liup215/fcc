@@ -1,5 +1,8 @@
 package com.fcc.core.shiro;
 
+import com.fcc.core.shiro.factory.IShiro;
+import com.fcc.core.shiro.factory.ShiroFactory;
+import com.fcc.module.auth.model.AuthUserEntity;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -22,12 +25,15 @@ public class ShiroDBRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
             throws AuthenticationException {
-//        IShiro shiroFactory = ShiroFactory.me();
-        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-//        User user = shiroFactory.user(token.getUsername());
-//        ShiroUser shiroUser = shiroFactory.shiroUser(user);
-//        SimpleAuthenticationInfo info = shiroFactory.info(shiroUser, user, super.getName());
-//        return info;
+        IShiro shiroFactory = ShiroFactory.me();
+        if(authcToken instanceof UsernamePasswordToken){
+            UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+            AuthUserEntity user = shiroFactory.user(token.getUsername());
+            ShiroUser shiroUser = shiroFactory.shiroUser(user);
+            SimpleAuthenticationInfo info = shiroFactory.info(shiroUser, user, super.getName());
+            return info;
+        }
+
         return null;
     }
 

@@ -1,6 +1,7 @@
 package com.fcc.core.shiro;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Created by Administrator on 2017/7/7.
@@ -8,17 +9,48 @@ import java.io.Serializable;
 public class ShiroUser implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    public Integer id;          // 主键ID
-    public String username;      // 账号
-    public String nickname;         // 姓名
-    public String truename;//真实姓名
-    public String phoneNumber;//手机号码
-    public String password;
-    public String userType;//用户所属类型
-    public String avatar;//头像地址
-    public Long lastLoginTime;//上次登录时间
-    public Double coin;//金币数
-    public String salt;
+    private int id;
+    private String password;
+    private Timestamp lastLogin;
+    private byte isSuperuser;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private byte isStaff;
+    private byte isActive;
+    private Timestamp dateJoined;
+
+    public ShiroUser() {
+    }
+
+    public ShiroUser(int id, String password, Timestamp lastLogin, byte isSuperuser, String username, String firstName, String lastName, String email, byte isStaff, byte isActive, Timestamp dateJoined) {
+
+        this.id = id;
+        this.password = password;
+        this.lastLogin = lastLogin;
+        this.isSuperuser = isSuperuser;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.isStaff = isStaff;
+        this.isActive = isActive;
+        this.dateJoined = dateJoined;
+    }
+
+    public static long getSerialVersionUID() {
+
+        return serialVersionUID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPassword() {
         return password;
@@ -28,24 +60,20 @@ public class ShiroUser implements Serializable{
         this.password = password;
     }
 
-    public String getSalt() {
-        return salt;
+    public Timestamp getLastLogin() {
+        return lastLogin;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public void setLastLogin(Timestamp lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public byte getIsSuperuser() {
+        return isSuperuser;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIsSuperuser(byte isSuperuser) {
+        this.isSuperuser = isSuperuser;
     }
 
     public String getUsername() {
@@ -56,76 +84,68 @@ public class ShiroUser implements Serializable{
         this.username = username;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getTruename() {
-        return truename;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setTruename(String truename) {
-        this.truename = truename;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUserType() {
-        return userType;
+    public byte getIsStaff() {
+        return isStaff;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setIsStaff(byte isStaff) {
+        this.isStaff = isStaff;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public byte getIsActive() {
+        return isActive;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setIsActive(byte isActive) {
+        this.isActive = isActive;
     }
 
-    public Long getLastLoginTime() {
-        return lastLoginTime;
+    public Timestamp getDateJoined() {
+        return dateJoined;
     }
 
-    public void setLastLoginTime(Long lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
-
-    public Double getCoin() {
-        return coin;
-    }
-
-    public void setCoin(Double coin) {
-        this.coin = coin;
+    public void setDateJoined(Timestamp dateJoined) {
+        this.dateJoined = dateJoined;
     }
 
     @Override
     public String toString() {
         return "ShiroUser{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", truename='" + truename + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
-                ", userType='" + userType + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", lastLoginTime=" + lastLoginTime +
-                ", coin=" + coin +
-                ", salt='" + salt + '\'' +
+                ", lastLogin=" + lastLogin +
+                ", isSuperuser=" + isSuperuser +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", isStaff=" + isStaff +
+                ", isActive=" + isActive +
+                ", dateJoined=" + dateJoined +
                 '}';
     }
 }

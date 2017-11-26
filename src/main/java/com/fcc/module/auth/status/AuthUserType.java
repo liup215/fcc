@@ -1,18 +1,15 @@
-package com.fcc.common.constant.status;
+package com.fcc.module.auth.status;
 
 /**
- * 管理员的状态
- *
- * @author liupeng
+ * Created by acer on 2017/11/24.
  */
-public enum UserStatus {
-
-    OK(1, "启用"), FREEZED(2, "冻结"), DELETED(3, "被删除");
+public enum AuthUserType {
+    Stuff(1, "员工"), notStuff(0, "普通用户");
 
     int code;
     String message;
 
-    UserStatus(int code, String message) {
+    AuthUserType(int code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -37,7 +34,7 @@ public enum UserStatus {
         if (value == null) {
             return "";
         } else {
-            for (UserStatus ms : UserStatus.values()) {
+            for (AuthUserType ms : AuthUserType.values()) {
                 if (ms.getCode() == value) {
                     return ms.getMessage();
                 }

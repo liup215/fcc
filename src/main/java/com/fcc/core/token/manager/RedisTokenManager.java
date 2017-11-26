@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * Created by Administrator on 2017/8/28.
  */
 @Service
-public class RedisTokenManager implements TokenManager{
+public class RedisTokenManager extends DefaultTokenManager{
     private RedisTemplate redis;
 
     @Autowired
@@ -33,21 +33,8 @@ public class RedisTokenManager implements TokenManager{
         return model;
     }
 
-    public TokenModel getToken(String authentication) {
-        if (authentication == null || authentication.length() == 0) {
-            return null;
-        }
-        String[] param = authentication.split("_");
-        if (param.length != 2) {
-            return null;
-        }
-        //使用userId和源token简单拼接成的token，可以增加加密措施
-        Integer userId = Integer.parseInt(param[0]);
-        String token = param[1];
-        return new TokenModel(userId, token);
-    }
 
-
+    @Override
     public boolean checkToken(TokenModel model) {
         if (model == null) {
             return false;
@@ -61,6 +48,7 @@ public class RedisTokenManager implements TokenManager{
         return true;
     }
 
+    @Override
     public void deleteToken(Integer userId) {
         redis.delete(userId);
     }
